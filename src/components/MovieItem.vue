@@ -11,7 +11,7 @@
         <BButton size="md" block variant="outline-light">Edit</BButton>
         </div>
         <div class="col pr-2 pl-2">
-        <BButton size="md" block variant="outline-light">Remove</BButton>
+        <BButton size="md" block variant="outline-light" @click="emitRemoveEvent">Remove</BButton>
         </div>
       </div>
     </div>
@@ -28,10 +28,18 @@ export default {
   }
   },
   computed: {
-  posterBg(){
-  return {
-  'background-image': `url(${this.movie.Poster})`
+    posterBg(){
+      return {
+        'background-image': `url(${this.movie.Poster})`
   }
+  }
+  },
+  methods: {
+    emitRemoveEvent(){
+      this.$emit('removeItem', {
+        id: this.movie.imdbID,
+        title: this.movie.Title
+  })
   }
   }
 }
